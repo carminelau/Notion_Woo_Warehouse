@@ -1,0 +1,25 @@
+
+services:
+  stock-sync:
+    build: .
+    container_name: stock-management
+    environment:
+      - WOOCOMMERCE_API_URL=${WOOCOMMERCE_API_URL}
+      - WOOCOMMERCE_CONSUMER_KEY=${WOOCOMMERCE_CONSUMER_KEY}
+      - WOOCOMMERCE_CONSUMER_SECRET=${WOOCOMMERCE_CONSUMER_SECRET}
+      - NOTION_TOKEN=${NOTION_TOKEN}
+      - NOTION_DATABASE_ID=${NOTION_DATABASE_ID}
+      - SYNC_INTERVAL=${SYNC_INTERVAL:-300}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - AI_MODEL=${AI_MODEL:-local}
+      - STOCK_WARNING_THRESHOLD=${STOCK_WARNING_THRESHOLD:-10}
+    volumes:
+      - ./logs:/app/logs
+      - ./config:/app/config
+    restart: unless-stopped
+    networks:
+      - stock-network
+
+networks:
+  stock-network:
+    driver: bridge

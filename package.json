@@ -1,0 +1,32 @@
+{
+  "name": "stock-management-docker",
+  "version": "1.0.0",
+  "description": "Sistema di sincronizzazione automatico dello stock tra WooCommerce e Notion",
+  "author": "Stock Management Team",
+  "license": "MIT",
+  "keywords": [
+    "docker",
+    "woocommerce",
+    "notion",
+    "stock-management",
+    "sync",
+    "automation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tuoutente/docker-stock-management"
+  },
+  "engines": {
+    "docker": ">=20.10.0",
+    "docker-compose": ">=2.0.0"
+  },
+  "requirements": {
+    "python": ">=3.11",
+    "woocommerce": "3.0.0",
+    "notion-client": "2.2.1",
+    "requests": "2.31.0",
+    "python-dotenv": "1.0.0",
+    "schedule": "1.2.0",
+    "loguru": "0.7.2"
+  }
+}
