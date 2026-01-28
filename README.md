@@ -1,4 +1,4 @@
-# Stock Management Docker
+# Notion_Woo_Warehouse
 
 Sistema di sincronizzazione automatico dello stock tra **WooCommerce** e **Notion** tramite container Docker.
 
