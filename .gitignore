@@ -54,8 +54,5 @@ test_ai_agent.py
 add_skus_to_products.py
 debug_product.py
 
-# Script di development
-scripts/
-
 # Config locale
 config/local/
