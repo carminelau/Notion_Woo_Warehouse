@@ -127,6 +127,9 @@ class WooCommerceClient:
                         for variant in variants:
                             variant['_sku'] = variant.get('sku') or self._generate_sku(product.get('id'), variant.get('id'))
                             variant['_product_name'] = f"{product.get('name')} - {variant.get('attributes', [{}])[0].get('option', 'Variante')}"
+                            # Assicura che ogni variante abbia stock_quantity (None se non gestito)
+                            if 'stock_quantity' not in variant:
+                                variant['stock_quantity'] = variant.get('manage_stock', False) and 0 or None
                             product['_variants'].append(variant)
                         
                         logger.debug(f"✓ Recuperate {len(product['_variants'])} varianti per prodotto {product.get('name')}")

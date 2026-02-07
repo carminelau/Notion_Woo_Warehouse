@@ -117,7 +117,7 @@ class StockSynchronizer:
                         logger.warning(f"⊘ Duplicato rilevato: {product_name} ({sku}) - SKU già sincronizzato")
                         continue
                     
-                    stock = product.get('stock_quantity', 0)
+                    stock = product.get('stock_quantity') or 0
                     price = product.get('price', product.get('regular_price', ''))
                     brand = self._extract_brand(product)
                     categories = self._extract_categories(product)
@@ -136,7 +136,7 @@ class StockSynchronizer:
                             existing_stock = self.notion.extract_property(notion_item, 'Stock')
                             
                             # Usa il minore tra stock Notion e WooCommerce (previene aumento accidentale)
-                            update_stock = min(existing_stock if existing_stock is not None else stock, stock)
+                            update_stock = min(existing_stock if existing_stock is not None else stock, stock or 0)
                             
                             # Aggiorna Notion se lo stock calcolato è diverso da quello esistente
                             if update_stock != existing_stock:
@@ -174,7 +174,7 @@ class StockSynchronizer:
                     for variant in variants:
                         try:
                             variant_sku = variant.get('_sku')
-                            variant_stock = variant.get('stock_quantity', 0)
+                            variant_stock = variant.get('stock_quantity') or 0
                             variant_name = variant.get('_product_name', product_name)
                             variant_price = variant.get('price', variant.get('regular_price', price))
                             
@@ -193,7 +193,7 @@ class StockSynchronizer:
                                 existing_variant_stock = self.notion.extract_property(variant_item, 'Stock')
                                 
                                 # Usa il minore tra stock Notion e WooCommerce (previene aumento accidentale)
-                                update_variant_stock = min(existing_variant_stock if existing_variant_stock is not None else variant_stock, variant_stock)
+                                update_variant_stock = min(existing_variant_stock if existing_variant_stock is not None else variant_stock, variant_stock or 0)
                                 
                                 # Aggiorna Notion se lo stock calcolato è diverso da quello esistente
                                 if update_variant_stock != existing_variant_stock:
