@@ -1,4 +1,4 @@
-# Stock Management Docker
+# Notion_Woo_Warehouse
 
 Sistema di sincronizzazione automatico dello stock tra **WooCommerce** e **Notion** tramite container Docker.
 
@@ -33,7 +33,7 @@ Leggi la documentazione nella cartella **`docs/`**:
 
 ### 1. Clone/Estrai il progetto
 ```bash
-cd c:\Work\Docker_Stock_management
+cd c:\Work\Notion_Woo_Warehouse
 ```
 
 ### 2. Copia il file di configurazione
